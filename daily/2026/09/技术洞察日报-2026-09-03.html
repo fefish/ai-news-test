@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>技术洞察日报 2026-09-03</title>
+  <style>
+:root {
+  --bg: #f6f8f7;
+  --surface: #ffffff;
+  --ink: #1f2d2f;
+  --muted: #647174;
+  --line: #d9e3e0;
+  --teal: #207a74;
+  --teal-2: #e8f5f3;
+  --gold: #d79b31;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: #263235;
+  font-family: "Microsoft YaHei", "PingFang SC", "Segoe UI", Arial, sans-serif;
+}
+.report-shell {
+  width: min(1180px, calc(100vw - 40px));
+  margin: 28px auto 48px;
+}
+.report-header {
+  margin-bottom: 16px;
+  padding: 20px 22px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 10px 28px rgba(30, 54, 55, 0.08);
+}
+.report-header h1 {
+  margin: 0 0 10px;
+  font-size: 26px;
+  line-height: 1.35;
+  color: var(--ink);
+}
+.report-meta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  color: var(--muted);
+  font-size: 13px;
+}
+.report-meta span {
+  padding: 5px 9px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fbfdfc;
+}
+.report-card {
+  padding: 22px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 10px 28px rgba(30, 54, 55, 0.08);
+}
+.markdown {
+  line-height: 1.65;
+  margin: 0;
+  color: #263235;
+}
+.markdown h1,
+.markdown h2,
+.markdown h3 {
+  line-height: 1.35;
+  color: var(--ink);
+  scroll-margin-top: 18px;
+}
+.markdown h1 {
+  margin: 0 0 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--teal);
+  font-size: 26px;
+}
+.markdown h2 {
+  margin: 26px 0 12px;
+  padding: 8px 12px;
+  background: var(--teal-2);
+  border-radius: 6px;
+  font-size: 18px;
+  text-align: center;
+}
+.markdown h3 {
+  margin: 20px 0 10px;
+  font-size: 15px;
+}
+.report-return-row {
+  display: flex;
+  justify-content: flex-end;
+  margin: 8px 0 16px;
+}
+.report-return-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #bdded9;
+  border-radius: 7px;
+  background: #f4faf8;
+  color: var(--teal);
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  text-decoration: none;
+}
+.markdown a.report-return-button {
+  border-bottom: 0;
+}
+.report-return-button:hover {
+  border-color: #8dc8c1;
+  background: var(--teal-2);
+}
+.markdown p {
+  margin: 8px 0;
+}
+.markdown blockquote {
+  margin: 14px 0;
+  padding: 12px 14px;
+  border-left: 4px solid var(--gold);
+  background: #fff8ec;
+  color: #453525;
+  border-radius: 6px;
+}
+.markdown ul {
+  margin: 8px 0 12px 0;
+  padding-left: 22px;
+}
+.markdown li {
+  margin: 5px 0;
+}
+.daily-summary-box {
+  margin: 16px 0 18px;
+  padding: 13px 16px;
+  border: 1px solid #cfe4df;
+  border-radius: 8px;
+  background: #f4faf8;
+  color: #304744;
+}
+.daily-summary-box ul {
+  margin: 0;
+  padding-left: 20px;
+}
+.daily-summary-box li {
+  margin: 5px 0;
+}
+.report-tabs {
+  margin: 18px 0 22px;
+}
+.report-tab-buttons {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  padding: 8px 0 10px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+}
+.report-tab-button {
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--surface);
+  color: var(--muted);
+  padding: 6px 10px 6px 8px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.report-tab-button.active {
+  color: var(--teal);
+  border-color: #9bcfca;
+  background: var(--teal-2);
+}
+.report-tab-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 22px;
+  background: #eef7f5;
+  color: #0d7770;
+  border: 1px solid #c5dfdc;
+  font-size: 10px;
+  line-height: 1;
+}
+.report-tab-button.active .report-tab-icon {
+  background: #0f8c84;
+  border-color: #0f8c84;
+  color: #fff;
+}
+.report-tab-label {
+  white-space: nowrap;
+}
+.report-tab-panel {
+  display: none;
+  padding-top: 8px;
+}
+.report-tab-panel.active {
+  display: block;
+}
+.report-collapse {
+  margin: 14px 0 20px;
+  border: 1px solid #cfe4df;
+  border-radius: 8px;
+  background: #fbfefd;
+}
+.report-collapse > summary {
+  cursor: pointer;
+  padding: 12px 14px;
+  font-weight: 800;
+  color: var(--teal);
+  background: #eef8f6;
+  border-radius: 8px;
+}
+.report-collapse-body {
+  padding: 0 14px 12px;
+}
+.markdown a {
+  color: var(--teal);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(32, 122, 116, 0.28);
+}
+.markdown strong {
+  color: var(--teal);
+}
+.markdown code {
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: #f1f4f3;
+  color: #31545a;
+}
+.md-tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 22px;
+  padding: 0 8px;
+  margin: 0 4px 4px 0;
+  border-radius: 999px;
+  background: var(--teal-2);
+  border: 1px solid #bdded9;
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 700;
+}
+.markdown hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 22px 0;
+}
+.md-table {
+  width: 100%;
+  min-width: 0;
+  margin: 10px 0 16px;
+  border-collapse: collapse;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  overflow: hidden;
+}
+.md-table th,
+.md-table td {
+  padding: 9px 10px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+.md-table th {
+  background: #f3f8f7;
+  color: var(--ink);
+}
+.numbered-line {
+  font-weight: 700;
+}
+@media (max-width: 720px) {
+  .report-shell { width: min(100vw - 20px, 1180px); margin-top: 12px; }
+  .report-header, .report-card { padding: 16px; }
+  .report-tab-buttons { position: static; }
+}
+</style>
+</head>
+<body>
+  <main class="report-shell">
+    <header class="report-header">
+      <h1>技术洞察日报 2026-09-03</h1>
+      <div class="report-meta">
+        <span>报告类型：技术洞察日报</span>
+        <span>覆盖周期：2026-09-02T00:00:00+00:00 ~ 2026-09-03T00:00:00+00:00</span>
+        <span>HTML 导出时间：2026-09-03 18:16:00 CST</span>
+      </div>
+    </header>
+    <article class="report-card markdown">
+      <p><strong>日期：2026年09月03日</strong></p><p><strong>生成时间：2026-09-03 18:41 CST（Asia/Shanghai）</strong></p><p><strong>生效信源：20 个 | 本期条目：24 条 | 覆盖板块：8 个</strong></p><div class="daily-summary-box"><ul><li>板块分布：AI应用与产品化场景 1 条，智能体平台、协议与执行系统 2 条，AI推理与服务加速 3 条，AI模型 10 条，模型训练 1 条，AI安全、可信与治理 4 条，云与AI基础设施 2 条，标准、协议与产业联盟 1 条，合计 24 条。</li><li>日报内容：今日头条聚焦 <strong>Prefix Sliding用有界上下文重塑长程推理成本</strong>，并同步关注NVIDIA用投机解码压低LLM推理开销；Anthropic 推出 Fable 5.1 并压低复杂任务成本；Google推出Gemini 3.8强化推理与安全编程能力。</li><li>关键亮点：本期亮点在于模型、推理与安全三线并进：一边强调有界上下文、投机解码和编译加速，一边推动漏洞发现、PII 遮罩和组织知识沉淀，显示 AI 产品化正向更强工程化与治理化演进。</li></ul></div><hr><h2 id="report-return-daily-headlines">今日头条</h2><ul><li><a href="#event-33860">Prefix Sliding用有界上下文重塑长程推理成本</a></li></ul><ul><li><a href="#event-33350">NVIDIA用投机解码压低LLM推理开销</a></li></ul><ul><li><a href="#event-34034">Anthropic 推出 Fable 5.1 并压低复杂任务成本</a></li></ul><ul><li><a href="#event-33319">Google推出Gemini 3.8强化推理与安全编程能力</a></li></ul><ul><li><a href="#event-34033">World Labs推出Atlas，统一视频生成与3D重建</a></li></ul><ul><li><a href="#event-33347">Google开源Mantis提升漏洞发现与修复效率</a></li></ul><ul><li><a href="#event-33318">Proactive 基于 Gemini 协同编码智能体工作流，推动 AI 开发工具多环境协作</a></li></ul><ul><li><a href="#event-34262">阿里更新 Qwen3.8-Max 提升前端编程与性价比</a></li></ul><div class="report-tabs" data-report-tabs><div class="report-tab-buttons"><button type="button" class="report-tab-button active" data-report-tab="report-tabs-0-0"><span class="report-tab-icon" aria-hidden="true">全</span><span class="report-tab-label">全部</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-1"><span class="report-tab-icon" aria-hidden="true">AI</span><span class="report-tab-label">AI产业&amp;行业动态</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-2"><span class="report-tab-icon" aria-hidden="true">基</span><span class="report-tab-label">基础竞争力</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-3"><span class="report-tab-icon" aria-hidden="true">5G</span><span class="report-tab-label">通信行业动态</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-4"><span class="report-tab-icon" aria-hidden="true">研</span><span class="report-tab-label">学术研究</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-5"><span class="report-tab-icon" aria-hidden="true">GH</span><span class="report-tab-label">开源&amp;GitHub 趋势</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-6"><span class="report-tab-icon" aria-hidden="true">引</span><span class="report-tab-label">大咖言论</span></button></div><div class="report-tab-panels"><section class="report-tab-panel active" data-report-panel="report-tabs-0-0"><details class="report-collapse" open><summary>AI核心技术板块</summary><div class="report-collapse-body"><hr><h2>AI应用与产品化场景</h2><h3 id="event-33318">1、Proactive 基于 Gemini 协同编码智能体工作流，推动 AI 开发工具多环境协作</h3><p><span class="md-tag">AI应用与产品化场景</span> <span class="md-tag">AI编程应用 Proactive</span> <span class="md-tag">Gemini</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：2026年09月03日，<strong>Proactive</strong> 围绕开源开发、本地开发和云端开发工作流使用 <strong>Gemini</strong> 等底层模型，将编码 <strong>Agent</strong> 的任务拆解、上下文衔接和协同执行整合到自身开发工具中。原始素材表达的是该产品或工作流如何借助模型能力组织开发流程，并非底层模型发布事件。这类信息应作为 AI 编程应用和开发者工具产品化事件处理，重点观察其对多环境研发协作的工程化价值。</p><p>📌 <strong>总结</strong>：<strong>Proactive</strong> 的实践说明 AI 编程工具竞争正在从单点代码补全走向工作流级 <strong>Agent</strong> 协同：底层模型负责推理和代码理解，产品层负责连接本地、云端和开源协作场景。对研发团队而言，启发点是评估编码 <strong>Agent</strong> 的上下文管理、任务编排和权限边界；对技术主管而言，关键是判断这类工具是否能降低跨仓库协作、代码审查和开源贡献流程的组织成本。</p><p>来源：<a href="https://deepmind.google/blog/proactive-cyber-defense-for-governments-and-enterprises/" target="_blank" rel="noreferrer">Google DeepMind</a></p><p>原文标题：Proactive cyber defense for governments and enterprises</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>智能体平台、协议与执行系统</h2><h3 id="event-33395">1、ClawBench 让 AI agent 在真实网站任务中暴露短板</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">ClawBench</span> <span class="md-tag">真实网站任务</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：2026年9月2日，<strong>TIGER-AI-Lab</strong> 联合滑铁卢大学、<strong>UBC NAIL Group</strong>、<strong>UniPat AI</strong> 和 <strong>CMU</strong> 等机构发布 <strong>ClawBench</strong>，用真实网站上的日常在线任务评估 AI agent 的执行能力。材料中给出的结论是，<strong>Claude</strong>、<strong>GPT</strong>、<strong>Gemini</strong> 在这类任务上的完成率只有约<strong>33%</strong>，说明当前 agent 一旦进入网页操作、表单填写、在线流程等真实环境，仍会明显暴露规划、交互和稳健性问题。该基准同时配套 <strong>GitHub</strong>、项目主页和 <strong>Hugging Face</strong> 资源，便于外部复现与延伸分析。</p><p>📌 <strong>总结</strong>：<strong>ClawBench</strong> 的意义不在于再做一次抽象 benchmark，而是把 agent 能否完成真实在线任务作为核心考题，这会直接影响工具调用框架、网页代理、自动化办公和企业流程 agent 的设计取向。对于产品和研发团队来说，它提示评估指标不能只看对话质量，还要看任务拆解、页面交互、错误恢复和长链路执行稳定性，否则 agent 的能力判断会明显偏乐观。</p><p>来源：<a href="https://zhuanlan.zhihu.com/p/2078425585811038794" target="_blank" rel="noreferrer">机器之心</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-33683">2、Qwen开源zg把本地检索统一到单一Agent接口</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">zg</span> <span class="md-tag">MCP</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：2026-09-02，<strong>Qwen</strong> Developers开源zg（zvec-grep），面向代码智能体和本地工作区搜索，把ripgrep、BM25和向量检索封装到同一检索层，并通过<strong>MCP</strong>暴露最小工具面。该方案支持离线索引、增量更新和按需远程嵌入授权，默认检索结果还标注fresh或possibly_stale，帮助Agent在不反复预检的情况下继续执行任务。</p><p>📌 <strong>总结</strong>：这类设计把Agent常见的搜索、定位、上下文拼接收敛到单一接口，减少工具调用和Token消耗，也降低了本地内容外发到远程模型的门槛。对技术路线的价值在于，它把“检索即能力”前移到终端侧，强化了本地优先、权限隔离和可控执行的工程范式，适合代码助手、知识库检索和本地智能体工作流落地。</p><p>来源：<a href="https://www.marktechpost.com/2026/09/02/qwen-developers-open-sources-zg-zvec-grep-a-local-first-search-layer-unifying-ripgrep-bm25-and-vector-search/" target="_blank" rel="noreferrer">MarkTechPost - Open Source</a></p><p>原文标题：Qwen Developers Open-Sources zg (zvec-grep): A Local-First Search Layer Unifying ripgrep, BM25, and Vector Search</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI推理与服务加速</h2><h3 id="event-33860">1、Prefix Sliding用有界上下文重塑长程推理成本</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">Prefix Sliding</span> <span class="md-tag">KV cache</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：2026-09-02，相关文章围绕<strong>Prefix Sliding</strong>讨论长程推理中token冗余的问题：在full attention下，推理链越长，<strong>KV cache</strong>和计算成本越高，而注意力可视化显示中间token往往很快失去作用。作者因此提出只保留前缀和滑动窗口的机制，并说明可通过Continue PE、分块回传和自定义kernel把该方法用于推理与训练，目标是在不重训现有模型的前提下实现更长轨迹和更高吞吐。</p><p>📌 <strong>总结</strong>：这一思路对长上下文产品、Agent编排和推理系统的意义在于，它给出了一个可以直接迁移到现有模型上的成本上限方案，而不是要求从头换架构。若后续工程化成熟，团队在规划上下文预算、缓存策略和长链路任务时，便能按“有界成本”而不是“线性膨胀”来设计系统。</p><p>来源：<a href="https://mp.weixin.qq.com/s?__biz=Mzk0MTYzMzMxMA==&amp;amp;mid=2247510745&amp;amp;idx=1&amp;amp;sn=413a4ff1480b263dfe33a6cc30f9d80f" target="_blank" rel="noreferrer">微信科技 RSS（bestblogs 待验证）</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-33350">2、NVIDIA用投机解码压低LLM推理开销</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">speculative decoding</span> <span class="md-tag">TensorRT-LLM</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：2026年9月2日，<strong>NVIDIA</strong>围绕 <strong>speculative decoding</strong> 给出一套面向 <strong>LLM</strong> inference 的共设计方法，核心是在解码阶段用小 draft model 先生成多 token，再由大 target model 一次并行校验，从而减少逐 token 迭代次数。文章进一步比较 external draft model、<strong>MTP</strong>、<strong>EAGLE-3</strong>、<strong>DFlash</strong>、<strong>DSpark</strong> 与 suffix/n-gram 等机制，并用 <strong>SPEED-Bench</strong> 和 <strong>TensorRT-LLM</strong> 说明应如何结合 workload、draft length、acceptance length 与 draft overhead 选择最优配置。</p><p>📌 <strong>总结</strong>：这类方法的价值不在于单点提速，而在于把推理加速从“模型越大越慢”的粗粒度判断，推进到围绕 token 接受率、KV cache 压力、kernel tile 对齐和训练/部署成本的系统优化。对推理平台与芯片方案设计而言，它提供了可复用的调参框架，也强化了模型结构、serving 架构和硬件执行效率之间的联动判断。</p><p>来源：<a href="https://developer.nvidia.com/blog/co-designing-ai-models-using-speculative-decoding-for-faster-llm-inference/" target="_blank" rel="noreferrer">NVIDIA</a></p><p>原文标题：Co-Designing AI Models Using Speculative Decoding for Faster LLM Inference</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-33441">3、PyTorch 2.14 强化编译器与分布式性能</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">PyTorch</span> <span class="md-tag">Inductor</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：2026年9月，<strong>PyTorch</strong> 发布 2.14，重点把编译器、分布式通信和多硬件后端的性能补齐做成了同一轮能力升级：<strong>Inductor</strong> 侧引入 <strong>NVGEMM</strong>、默认开启通信与计算重叠，并改进动态 shape、组合 kernel 和 per-call 开销；分布式侧新增 nccl2 backend、可原地重配置的故障恢复机制、one-sided <strong>RMA</strong> window 和 backend-agnostic <strong>Flight Recorder</strong>；同时还补齐 <strong>Apple Silicon</strong>、<strong>ROCm</strong>、<strong>Intel XPU</strong> 等平台的 native kernel 与图捕获能力。</p><p>📌 <strong>总结</strong>：这次发布的价值不只是单项算子加速，而是把模型执行链路里的编译、调度、通信、容错和平台适配连成一体，降低了训练集群在多机故障、异构硬件和动态 shape 场景下的工程成本。对技术路线而言，<strong>PyTorch</strong> 继续从研究框架转向统一的生产训练与推理平台；对产品架构而言，分布式和后端能力更容易被默认启用，减少上层应用自行拼装优化组件的需要；对商业判断而言，框架侧的效率收益会直接影响大模型训练和推理的 <strong>TCO</strong> 竞争力。</p><p>来源：<a href="https://pytorch.org/blog/pytorch-2-14-release-blog/" target="_blank" rel="noreferrer">PyTorch</a></p><p>原文标题：PyTorch 2.14 Release Blog</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI模型</h2><h3 id="event-34034">1、Anthropic 推出 Fable 5.1 并压低复杂任务成本</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">Anthropic</span> <span class="md-tag">Fable 5.1</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：9 月 1 日，<strong>Anthropic</strong> 发布 Claude <strong>Fable 5.1</strong> 与 <strong>Claude Mythos 5.1</strong>，前者面向所有用户开放，后者仅供审核机构使用，两个版本能力相同但安全限制不同。官方披露，<strong>Fable 5.1</strong> 在 <strong>Terminal-Bench-Science 0.1</strong>、编码、蛋白质设计、金星地形重建和开源模型 <strong>GPU</strong> 内核优化等任务上都有进展，并能把七个开源模型的 <strong>GPU</strong> 推理速度最高提升 <strong>2.5 倍</strong>。</p><p>📌 <strong>总结</strong>：这次升级的核心价值不只是能力提升，而是把模型、工具调用、安全边界和成本结构一起重做：一方面，复杂科研和工程任务有了更强的自动化能力；另一方面，缓存读取价格和复杂任务总成本明显下降，意味着企业在智能体、科研辅助和网络安全等高价值场景中，可以用更低单位成本换取更高执行深度。但同时，<strong>Mythos</strong> 的严格准入也说明高能力模型正在走向分级供给。</p><p>来源：<a href="https://www.mittrchina.com/news/detail/16883" target="_blank" rel="noreferrer">MITTR China - News Detail</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-34033">2、World Labs推出Atlas，统一视频生成与3D重建</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">Atlas</span> <span class="md-tag">3D重建</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：2026-09-02，<strong>World</strong> Labs发布<strong>Atlas</strong>，尝试把视频生成、<strong>3D重建</strong>和时空模拟放进同一个多模态世界模型中。该模型从零开始预训练，将文本、图像、视频和3D数据统一进共享的Spatial <strong>Context</strong>，并把相机位姿作为原生输入，使模型不仅能按轨迹生成最长<strong>1分钟</strong>、1440p视频，还能从照片和视频重建点云和3D <strong>Gaussian</strong> Splatting场景。</p><p>📌 <strong>总结</strong>：<strong>Atlas</strong>的意义在于把过去分散的视频生成、几何重建和机器人仿真统一到空间表示上，说明世界模型竞争正在从“生成得像”转向“空间一致、可重建、可迁移”。如果后续验证能覆盖物理一致性、长时稳定性和真实机器人成功率，它会对影视、游戏、建筑和Real-to-Sim工作流形成更直接的架构影响；当前阶段则更像是路线信号而非成熟产品。</p><p>来源：<a href="https://www.mittrchina.com/news/detail/16884" target="_blank" rel="noreferrer">MITTR China - News Detail</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-33319">3、Google推出Gemini 3.8强化推理与安全编程能力</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">Gemini 3.8 Flash</span> <span class="md-tag">Flash Cyber</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：2026年9月2日，<strong>Google</strong> DeepMind发布<strong>Gemini 3.8 Flash</strong>与3.8 <strong>Flash Cyber</strong>，前者面向软件工程、agentic任务和多步推理，后者面向漏洞发现与自动修补。两款模型共享同一基础能力，并通过长链路agent循环进一步强化递归评估和改进；其中 <strong>Flash</strong> 版本保持与3.7 <strong>Flash</strong>相同的起步价格，<strong>Cyber</strong> 版本则通过 <strong>Fairwind Program</strong> 向可信防御方开放。</p><p>📌 <strong>总结</strong>：这次发布把“通用推理 + 安全防御”拆成两条可独立采购和部署的产品线，一方面压低编程与智能体工作流的使用门槛，另一方面把漏洞发现、补丁生成和代码防护纳入可规模化的安全能力。对技术路线而言，它强化了以长链路推理和工具调用支撑复杂任务的方向；对商业判断而言，则意味着模型竞争已从单纯能力对比，转向价格、场景隔离和可信访问机制的组合竞争。</p><p>来源：<a href="https://deepmind.google/blog/introducing-gemini-3-8-flash-and-38-flash-cyber/" target="_blank" rel="noreferrer">Google DeepMind</a></p><p>原文标题：Introducing Gemini 3.8 Flash and 3.8 Flash Cyber</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-34262">4、阿里更新 Qwen3.8-Max 提升前端编程与性价比</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">Qwen3.8-Max</span> <span class="md-tag">前端编程</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：2026-09-02，阿里更新旗舰模型 <strong>Qwen3.8-Max</strong>，并针对 <strong>Coding</strong> 和 <strong>Cowork</strong> 做专项后训练，官方称整体性能明显提升。文中提到，该模型在聚焦<strong>前端编程</strong>能力的 <strong>CodeArena</strong> 榜单中提升 22 分至 1691 分，位居总榜第一；同时在该榜单的模型性价比前沿中，新版本每百万 tokens 的综合平均价格为 5 美元。阿里还称该模型支持 <strong>100 万</strong>上下文 tokens，并已接入千问 AI 平台、千问办公、<strong>Qoder</strong> 和千问 <strong>App</strong>。</p><p>📌 <strong>总结</strong>：这次更新的核心不是单纯提升分数，而是把编程能力、长上下文和单位成本放到同一条产品线里重新定义竞争力。对技术路线而言，它说明后训练与专项优化仍是企业级模型竞争的重要手段；对商业判断而言，<strong>API</strong> 价格、上下文长度和可用场景的同步改善，会直接影响企业是否把 <strong>Qwen</strong> 作为默认编程与长任务模型。</p><p>来源：<a href="https://finance.sina.com.cn/tech/shenji/2026-09-02/doc-iniqkzma1357655.shtml" target="_blank" rel="noreferrer">新浪科技</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-33696">5、彩云用动态连接优化刷新华而不实的训练纪录</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">彩云科技</span> <span class="md-tag">NanoGPT Speedrun</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：2026-09-02，<strong>NanoGPT Speedrun</strong> 公开竞速项目中，<strong>彩云科技</strong>基础模型算法团队围绕固定 8 张 <strong>H100</strong>、同一数据和同一效果约束，先后用 <strong>MUDD Skip Connections</strong> 与 <strong>Lightweight DC</strong> 连续两次刷新 <strong>GPT-2 Small</strong> 训练纪录。团队第一刀优化层间信息流动，通过动态选择跨层连接减少无效传递；第二刀改造多头注意力协作方式，让不同 head 在局部窗口内动态组合并复用投影，从而把端到端训练时间从 <strong>84.36 秒</strong>压到 <strong>76.3 秒</strong>。</p><p>📌 <strong>总结</strong>：这一结果的价值不只是榜单刷新，而是把动态连接、动态注意力组合这类架构思路放进了公开、固定硬件、固定数据的真实竞速环境里验证。对技术路线而言，它说明层间信息流和层内协作都可以通过低开销机制换取可量化训练加速；对研发工作而言，论文方法若能在竞速赛中落地，就更容易进入后续更大规模训练体系的工程评估。</p><p>来源：<a href="https://mp.weixin.qq.com/s?__biz=MzIwNzc2NTk0NQ==&amp;amp;mid=2247620454&amp;amp;idx=1&amp;amp;sn=ffd3a8d5de95d7066443c1bbb9321e96" target="_blank" rel="noreferrer">夕小瑶科技说 微信公众号 RSS</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-33955">6、Meta推出Muse把实时转写和说话人分离压到同一模型</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">Meta</span> <span class="md-tag">Muse Voice Transcribe</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：2026年9月2日，<strong>Meta</strong> 面向会议记录、客服分析和实时助手等语音场景发布 <strong>Muse Voice Transcribe</strong>，将流式转写、端点检测与说话人分离放进同一模型流程，支持 <strong>1 小时</strong>以上长音频、语言切换、关键词偏置和 20+ 说话人分离，并把公开 <strong>API</strong> 价格定为每小时 0.18 美元。<strong>Meta</strong> 还给出了 70 余种语言训练、25 种语言重点验证和流式基准结果，说明其目标不是单纯提升识别率，而是把 speaker attribution 直接纳入实时语音栈。</p><p>📌 <strong>总结</strong>：这类设计的价值在于把原本要拆成转写、聚类和后处理的多段流水线，压缩为一个可直接接入的模型能力，从而降低企业部署时的集成复杂度和总成本。对于会议智能、呼叫质检和语音 <strong>Agent</strong> 来说，speaker-aware 转写比单纯 <strong>ASR</strong> 更接近生产可用标准，也会迫使竞品同时在延迟、分离精度和定价上竞争，而不只是比基础识别能力。</p><p>来源：<a href="https://venturebeat.com/technology/meta-prices-muse-voice-transcribe-at-0-18-an-hour-with-real-time-diarization-for-20-speakers-a-steal-for-enterprises" target="_blank" rel="noreferrer">VentureBeat</a></p><p>原文标题：Meta prices Muse Voice Transcribe at $0.18 an hour, with real-time diarization for 20+ speakers: a steal for enterprises?</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-34393">7、darkps 发布多语种流式TTS并加入声线克隆</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">ice-012-audio</span> <span class="md-tag">streaming TTS</span> <span class="md-tag">体验提升</span></p><p>📋 <strong>要点</strong>：2026年9月2日，darkps 在 <strong>Hugging Face</strong> 更新 <strong>ice-012-audio</strong>，面向多语种文本转语音场景提供流式输出和基于参考音频的声线克隆能力，同时通过 active acoustic adapter 在骨干网络前后对 codec embedding 与隐藏状态做条件化处理，以提升语音生成的可控性与连续性。公开用法还展示了按语言、性别、风格和速度进行生成，以及从参考音频自动选择声线，说明该模型不只是单次合成，而是面向可交互语音工作流设计。</p><p>📌 <strong>总结</strong>：这类发布的价值在于把 <strong>TTS</strong> 从“生成一段音频”推进到“可在交互链路中持续输出”，对语音助手、播报系统、内容生产和多语种服务都有直接意义。流式输出降低了首包等待，声线克隆扩大了个性化语音的可复用性，而 active acoustic adapter 这类结构也为后续在质量、延迟和可控性之间做工程权衡提供了明确路线。</p><p>来源：<a href="https://huggingface.co/darkps/ice-012-audio" target="_blank" rel="noreferrer">Hugging Face Models</a></p><p>原文标题：darkps/ice-012-audio Text-to-Speech • 0.7B • Updated about 13 hours ago • 349 • 66</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-33685">8、Meta把语音转写拆分流程合并成单模型</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">Meta</span> <span class="md-tag">语音转写</span> <span class="md-tag">体验提升</span></p><p>📋 <strong>要点</strong>：2026年9月，<strong>Meta</strong> Superintelligence Labs发布Muse <strong>Voice Transcribe</strong>，面向实时语音处理把流式ASR、speaker diarization和endpointing收敛到一个自回归多模态模型中，避免传统语音栈中转写、分离说话人和停顿检测三套系统之间的多次交接。该模型按<strong>80ms</strong>音频分块处理，利用单一decoder循环在听和写之间切换，并通过强化学习同时优化词错率和时延，形成按词自适应的delay策略。</p><p>📌 <strong>总结</strong>：这一做法把语音交互从多模型拼接改成单模型闭环，直接减少链路复杂度、端到端时延和集成故障点，对会议纪要、语音助手、实时字幕和口述输入等产品都有落地价值。<strong>Meta</strong>以托管API方式开放而非释放权重，也说明其更倾向于通过平台服务把能力封装成可收费接口，进一步强化语音模型的产品化路径与生态控制力。</p><p>来源：<a href="https://www.marktechpost.com/2026/09/01/meta-superintelligence-labs-releases-muse-voice-transcribe-one-real-time-model-for-streaming-asr-diarization-and-endpointing/" target="_blank" rel="noreferrer">MarkTechPost - Voice AI</a></p><p>原文标题：Meta Superintelligence Labs Releases Muse Voice Transcribe: One Real-Time Model for Streaming ASR, Diarization, and Endpointing</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-33409">9、Multiverse用压缩模型把438B推向Agent推理</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">Quasar 438B</span> <span class="md-tag">compression</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：2026-09-02，<strong>Multiverse</strong> Computing推出<strong>Quasar 438B</strong>，定位为面向coding和enterprise agents的推理模型，并通过压缩技术降低大模型在记忆和计算上的负担。公司披露该模型上下文窗口为<strong>100万</strong>tokens，<strong>Artificial</strong> Analysis记录其输出速度约<strong>183 token</strong>s/s，<strong>Terminal-Bench</strong> v2.1得分69.3，但同时也未披露压缩比例、原始基座模型和具体硬件需求。</p><p>📌 <strong>总结</strong>：这条信息的重点不在“更大”，而在“更大模型能否被压缩到可用于Agent的成本区间”。如果后续压缩收益、延迟和部署条件能够被验证，它会推动企业把模型选型从绝对能力优先，转向能力、上下文长度、调用成本和工程可部署性的综合权衡；反之，若硬件要求和真实成本不透明，也说明压缩路线仍需要更强的可复现证据。</p><p>来源：<a href="https://thenewstack.io/quasar-438b-agent-compression/" target="_blank" rel="noreferrer">The New Stack Newsletter</a></p><p>原文标题：Multiverse says its 438B model is fast enough for AI agents. The benchmarks tell a more complicated story.</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-34384">10、谷歌用Gemini 3.8 Flash追近编程能力差距</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">Gemini 3.8 Flash</span> <span class="md-tag">强化学习</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：据 2026年9月1日报道，谷歌准备推出编程能力显著提升的 <strong>Gemini 3.8 Flash</strong>，内部代号为 <strong>Skimaki</strong>，内部编程工具 <strong>Jetski</strong> 的对比测试中，工程师对它的偏好程度已超过 <strong>Anthropic</strong> 的 <strong>Opus</strong>。报道同时提到，谷歌今年以来把更多研究时间和算力投入<strong>强化学习</strong>环节，并招募前 <strong>Thinking Machines Lab</strong> 联合创始人、<strong>OpenAI</strong> 前后训练负责人 <strong>Barret Zoph</strong> 加强相关工作。</p><p>📌 <strong>总结</strong>：这条信息的价值在于，它把模型竞争焦点再次拉回到后训练和编程能力，而不是单纯堆更大参数。对技术路线而言，<strong>Flash</strong> 系列继续承担更快、更便宜的定位，但能力差距必须靠<strong>强化学习</strong>、后训练和工程组织补齐；对商业判断而言，谷歌正在用分层模型策略维持价格与性能两端的覆盖，争夺开发者和代码场景入口。</p><p>来源：<a href="https://www.c114.com.cn/ai/5339/a1316853.html" target="_blank" rel="noreferrer">C114 通信网</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>模型训练</h2><h3 id="event-33493">1、美国政府介入支持OpenAI应对NYT版权诉讼</h3><p><span class="md-tag">模型训练</span> <span class="md-tag">OpenAI</span> <span class="md-tag">版权诉讼</span> <span class="md-tag">合规/监管影响</span></p><p>📋 <strong>要点</strong>：2026年9月，美国特朗普政府在The <strong>New York</strong> Times诉<strong>OpenAI</strong>的<strong>版权诉讼</strong>中提交statement of interest，支持<strong>OpenAI</strong>关于AI<strong>模型训练</strong>可构成fair use的主张。该案围绕OpenAI是否能在未经许可的情况下使用受版权保护文本训练LLM展开，政府意见书认为过度扩大版权责任会妨碍<strong>模型训练</strong>、研究突破和美国经济活力。</p><p>📌 <strong>总结</strong>：这类司法介入的影响不在产品功能本身，而在训练数据和版权边界的制度预期。若法院采纳更宽的fair use解释，模型厂商会获得更强的训练空间和议价筹码；若边界趋严，媒体版权许可、训练数据采购和合规成本都会同步上升。对规划侧而言，这会直接影响训练数据策略和法务投入。</p><p>来源：<a href="https://www.theverge.com/ai-artificial-intelligence/988344/trump-administration-new-york-times-openai-lawsuit" target="_blank" rel="noreferrer">The Verge AI</a></p><p>原文标题：The Trump administration is supporting OpenAI in the NYT copyright lawsuit</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI安全、可信与治理</h2><h3 id="event-33347">1、Google开源Mantis提升漏洞发现与修复效率</h3><p><span class="md-tag">AI安全、可信与治理</span> <span class="md-tag">Google Mantis</span> <span class="md-tag">漏洞</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：2026年9月2日，<strong>Google</strong> 发布开源框架 <strong>Mantis</strong>，用于自动化发现、分流、复现和修补软件漏洞。该框架把 critic 和 review agents 与沙箱化复现结合起来，并利用仓库历史自动构建架构与威胁模型文档，再将大量文件压缩为分层安全摘要树，以降低上下文开销并提升分析效率。<strong>Google</strong> 还表示，这套方法已在内部用于更快地找出真实漏洞，并在 <strong>GitHub</strong> 上开放给外部使用。</p><p>📌 <strong>总结</strong>：<strong>Mantis</strong> 的价值不只是开源一个安全工具，而是把漏洞研究、上下文整理、复现验证和补丁建议串成了更可规模化的 agent 流水线。对研发团队来说，它意味着安全扫描不必再依赖大量人工筛查误报；对产品架构来说，代码仓库的历史、威胁模型和修复上下文可以被结构化注入 agent，形成更稳定的安全生产力。</p><p>来源：<a href="https://cloud.google.com/blog/products/identity-security/getting-started-with-the-mantis-harness-to-find-and-fix-bugs/" target="_blank" rel="noreferrer">Google Cloud</a></p><p>原文标题：Getting started with Mantis, our open-source bug finding-and-fixing harness</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-33576">2、Meta 以结构化知识和验证回路沉淀组织经验</h3><p><span class="md-tag">AI安全、可信与治理</span> <span class="md-tag">Meta</span> <span class="md-tag">知识架构</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：2026年9月2日，<strong>Meta</strong> 公布其组织级“second brain”方案，面向合规等高重复、高风险场景，把专家知识拆成位置文件、术语表、路由索引和门控文件，再用明确的 recipes 控制推理流程。系统先离线抽取知识并形成可审计文件，再通过专家反馈触发最小化修复、回归测试和人工复核，把一次性纠错沉淀为永久生效的机构记忆。</p><p>📌 <strong>总结</strong>：这套方案把知识管理、推理流程和评测回路解耦，实际价值不在于单次回答更像专家，而在于让组织知识以文本资产的方式持续累积、可追溯、可回滚。对技术路线的影响是，企业级 agent 不必依赖模型重训也能更新领域知识；对产品架构的影响是，知识层、流程层和测试层可以分别演进，降低维护成本并提升一致性。</p><p>来源：<a href="https://engineering.fb.com/2026/09/02/ml-applications/organizational-second-brain-ai-learns-from-experts/" target="_blank" rel="noreferrer">Engineering at Meta</a></p><p>原文标题：An Organizational Second Brain: Building an AI That Learns From Experts</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-34396">3、Perplexity发布PII遮罩模型强化隐私识别</h3><p><span class="md-tag">AI安全、可信与治理</span> <span class="md-tag">pplx-pii-masking</span> <span class="md-tag">PII masking</span> <span class="md-tag">安全风险</span></p><p>📋 <strong>要点</strong>：2026-09-02，perplexity-ai在Hugging Face发布<strong>pplx-pii-masking</strong>，目标是对输入文本中的个人姓名、邮箱和电话等敏感信息做识别与遮罩。条目说明该模型采用Token Classification架构，结合BIOES解码和单文档敏感度输出，max_seq_len为4096，推理流程是先编码文本，再输出标签序列和mask结果，适合嵌入到检索、助手和内容处理管线中。</p><p>📌 <strong>总结</strong>：这类模型把隐私保护从事后规则清洗推进到前置识别与自动遮罩，能直接影响企业在日志、搜索、客服和知识库场景里的数据流设计。对产品架构而言，它提供了一个可插拔的合规前置层，帮助团队在不改变上层业务逻辑的前提下减少敏感信息外泄和人工审核压力。</p><p>来源：<a href="https://huggingface.co/perplexity-ai/pplx-pii-masking" target="_blank" rel="noreferrer">Hugging Face Models</a></p><p>原文标题：perplexity-ai/pplx-pii-masking Token Classification • 0.6B • Updated about 15 hours ago • 41</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-33492">4、OpenAI Astra 透明度争议推高模型安全担忧</h3><p><span class="md-tag">AI安全、可信与治理</span> <span class="md-tag">Astra</span> <span class="md-tag">chain-of-thought</span> <span class="md-tag">安全风险</span></p><p>📋 <strong>要点</strong>：<strong>The Verge</strong> 引述研究者和 <strong>OpenAI</strong> 内部人士称，<strong>Astra</strong> 在推理过程中可能使用更不透明的 recurrent depth 或 looped transformer 机制，使得模型内部思考更难像传统 <strong>chain-of-thought</strong> 那样被外部监控。报道同时提到，<strong>OpenAI</strong> 已围绕 <strong>Astra</strong> 加强 <strong>chain-of-thought</strong> monitoring，以便快速识别和阻断潜在失配行为，但研究者担心这种更难观测的架构会让安全检测和审计变得更脆弱。</p><p>📌 <strong>总结</strong>：这条消息的重点不是某个单独分数，而是模型透明度本身正在成为安全竞争的一部分。对前沿模型研发而言，架构选择不只影响性能，也影响是否还能被有效监控；对企业和平台而言，是否能够在生产环境里持续审计模型行为，正在变成选型与上线的重要门槛。若这种趋势继续，安全、可解释性和能力提升之间的权衡会更早进入产品决策。</p><p>来源：<a href="https://www.theverge.com/ai-artificial-intelligence/988334/openai-astra-ai-monitoring-safety" target="_blank" rel="noreferrer">The Verge AI</a></p><p>原文标题：Researchers fear safety disaster ahead of OpenAI’s Astra release</p></div></details><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>云与AI基础设施</h2><h3 id="event-33446">1、CDM用模块化AI机房重构数据中心建造方式</h3><p><span class="md-tag">云与AI基础设施</span> <span class="md-tag">Compu Dynamics Modular</span> <span class="md-tag">模块化AI基础设施</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：2026年9月2日，<strong>Compu Dynamics Modular</strong> 发布了新的<strong>模块化AI基础设施</strong>组合，覆盖 750 kW <strong>All-In-One Module</strong>、1.5 MW <strong>Base Module</strong>、3 MW AI <strong>Modular Solution</strong> 以及 5-6 MW <strong>Turnkey AI Factory</strong>，并规划向 50+ MW AI campuses 扩展。原文强调其设计围绕具体工作负载展开，750 kW 模块面向 AI edge inference 与空间受限部署，5 MW 方案则面向 hyperscale campus 和 foundation model training，同时标准化 hybrid air 与 direct-to-chip liquid cooling、弹性供电拓扑和动态负载稳定机制。</p><p>📌 <strong>总结</strong>：这类产品的价值在于把AI数据中心建设从项目制施工推进到标准化、可复制、按负载交付的工业化路径。对技术路线而言，混合冷却和工作负载定制成为高密度GPU时代的主流思路；对产品架构而言，基础设施供应商需要同时提供模块、冷却、电力和交付能力；对商业判断而言，交付速度、可扩展性和本地制造能力正在成为与传统机房方案竞争的核心变量。</p><p>来源：<a href="https://datacenterpost.com/why-ai-is-forcing-a-rethink-of-data-center-building-blocks/?utm_source=rss&amp;amp;utm_medium=rss&amp;amp;utm_campaign=why-ai-is-forcing-a-rethink-of-data-center-building-blocks" target="_blank" rel="noreferrer">Data Center POST</a></p><p>原文标题：Why AI Is Forcing a Rethink of Data Center Building Blocks</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-33416">2、Metal3接入KubeVirtBMC实现虚拟机裸机化编排</h3><p><span class="md-tag">云与AI基础设施</span> <span class="md-tag">KubeVirtBMC</span> <span class="md-tag">Metal3</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：2026-09-02，<strong>CNCF Blog</strong>展示了<strong>KubeVirtBMC</strong>与<strong>Metal3</strong>的端到端联动方案：先为KubeVirt虚拟机提供虚拟BMC端点，再由<strong>Metal3</strong>和Ironic通过Redfish virtual media把它注册为BareMetalHost，完成探测、装载镜像和状态流转。方案在单一Kubernetes集群内运行，借助固定MAC、裸机CR和虚拟介质接口，让虚拟机表现得像可被裸机编排系统管理的物理服务器。</p><p>📌 <strong>总结</strong>：这类集成把裸机管理、Ironic流程和KubeVirt虚机编排连成了可复用的测试与演示路径，使团队无需长期维护实体机群也能验证裸机 provisioning 逻辑。对基础设施软件而言，它把原本依赖硬件的集成场景转成了容器化、可复制、易回归的环境，直接提升CI/CD、开发内循环和方案演示效率。</p><p>来源：<a href="https://www.cncf.io/blog/2026/09/02/metal3-meets-kubevirtbmc-provisioning-kubevirt-vms-like-bare-metal/" target="_blank" rel="noreferrer">CNCF</a></p><p>原文标题：Metal3 meets KubeVirtBMC: Provisioning KubeVirt VMs like bare metal</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>标准、协议与产业联盟</h2><h3 id="event-33316">1、Cisco让Nexus One把私有云与裸金属统一到同一网络模型</h3><p><span class="md-tag">标准、协议与产业联盟</span> <span class="md-tag">Cisco</span> <span class="md-tag">EVPN-VXLAN</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：2026年9月2日，<strong>Cisco</strong>围绕Nexus One说明其现代私有云架构如何通过MP-<strong>BGP</strong> EVPN和VXLAN与VMware <strong>Cloud</strong> Foundation互通，把虚拟机、<strong>Kubernetes</strong>、裸金属和AI基础设施纳入一致的网络操作模型。文章强调，<strong>VCF 9.</strong>1中的Route Controller可直接与Nexus <strong>One EVPN Border</strong> Gateway对等，<strong>EVPN Type</strong> 5路由用于动态交换工作负载前缀，数据面则通过VXLAN提供直连能力，从而减少分布式数据路径中的专用边缘节点。</p><p>📌 <strong>总结</strong>：这类架构的实际价值在于把混合云网络的复杂边界改造成可标准化、可复用的控制与转发模型，减少静态VLAN/VRF拼接、中心化瓶颈和跨域运维成本。对技术路线而言，它强化了<strong>EVPN-VXLAN</strong>作为私有云统一底座的地位；对商业判断而言，则说明<strong>Cisco</strong>希望用开放标准和统一操作模型继续守住数据中心网络入口，并把AI流量、虚拟机和裸金属一起纳入同一套平台叙事。</p><p>来源：<a href="https://blogs.cisco.com/datacenter/from-fabric-to-cloud-native-cisco-nexus-one-for-the-modern-private-cloud" target="_blank" rel="noreferrer">Cisco</a></p><p>原文标题：From fabric to cloud native: Cisco Nexus One for the modern private cloud</p></section><section class="report-tab-panel" data-report-panel="report-tabs-0-1"><details class="report-collapse" open><summary>AI核心技术板块</summary><div class="report-collapse-body"><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI应用与产品化场景</h2><h3 id="event-33318-copy-2">1、Proactive 基于 Gemini 协同编码智能体工作流，推动 AI 开发工具多环境协作</h3><p><span class="md-tag">AI应用与产品化场景</span> <span class="md-tag">AI编程应用 Proactive</span> <span class="md-tag">Gemini</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：2026年09月03日，<strong>Proactive</strong> 围绕开源开发、本地开发和云端开发工作流使用 <strong>Gemini</strong> 等底层模型，将编码 <strong>Agent</strong> 的任务拆解、上下文衔接和协同执行整合到自身开发工具中。原始素材表达的是该产品或工作流如何借助模型能力组织开发流程，并非底层模型发布事件。这类信息应作为 AI 编程应用和开发者工具产品化事件处理，重点观察其对多环境研发协作的工程化价值。</p><p>📌 <strong>总结</strong>：<strong>Proactive</strong> 的实践说明 AI 编程工具竞争正在从单点代码补全走向工作流级 <strong>Agent</strong> 协同：底层模型负责推理和代码理解，产品层负责连接本地、云端和开源协作场景。对研发团队而言，启发点是评估编码 <strong>Agent</strong> 的上下文管理、任务编排和权限边界；对技术主管而言，关键是判断这类工具是否能降低跨仓库协作、代码审查和开源贡献流程的组织成本。</p><p>来源：<a href="https://deepmind.google/blog/proactive-cyber-defense-for-governments-and-enterprises/" target="_blank" rel="noreferrer">Google DeepMind</a></p><p>原文标题：Proactive cyber defense for governments and enterprises</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>智能体平台、协议与执行系统</h2><h3 id="event-33395-copy-2">1、ClawBench 让 AI agent 在真实网站任务中暴露短板</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">ClawBench</span> <span class="md-tag">真实网站任务</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：2026年9月2日，<strong>TIGER-AI-Lab</strong> 联合滑铁卢大学、<strong>UBC NAIL Group</strong>、<strong>UniPat AI</strong> 和 <strong>CMU</strong> 等机构发布 <strong>ClawBench</strong>，用真实网站上的日常在线任务评估 AI agent 的执行能力。材料中给出的结论是，<strong>Claude</strong>、<strong>GPT</strong>、<strong>Gemini</strong> 在这类任务上的完成率只有约<strong>33%</strong>，说明当前 agent 一旦进入网页操作、表单填写、在线流程等真实环境，仍会明显暴露规划、交互和稳健性问题。该基准同时配套 <strong>GitHub</strong>、项目主页和 <strong>Hugging Face</strong> 资源，便于外部复现与延伸分析。</p><p>📌 <strong>总结</strong>：<strong>ClawBench</strong> 的意义不在于再做一次抽象 benchmark，而是把 agent 能否完成真实在线任务作为核心考题，这会直接影响工具调用框架、网页代理、自动化办公和企业流程 agent 的设计取向。对于产品和研发团队来说，它提示评估指标不能只看对话质量，还要看任务拆解、页面交互、错误恢复和长链路执行稳定性，否则 agent 的能力判断会明显偏乐观。</p><p>来源：<a href="https://zhuanlan.zhihu.com/p/2078425585811038794" target="_blank" rel="noreferrer">机器之心</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-33683-copy-2">2、Qwen开源zg把本地检索统一到单一Agent接口</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">zg</span> <span class="md-tag">MCP</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：2026-09-02，<strong>Qwen</strong> Developers开源zg（zvec-grep），面向代码智能体和本地工作区搜索，把ripgrep、BM25和向量检索封装到同一检索层，并通过<strong>MCP</strong>暴露最小工具面。该方案支持离线索引、增量更新和按需远程嵌入授权，默认检索结果还标注fresh或possibly_stale，帮助Agent在不反复预检的情况下继续执行任务。</p><p>📌 <strong>总结</strong>：这类设计把Agent常见的搜索、定位、上下文拼接收敛到单一接口，减少工具调用和Token消耗，也降低了本地内容外发到远程模型的门槛。对技术路线的价值在于，它把“检索即能力”前移到终端侧，强化了本地优先、权限隔离和可控执行的工程范式，适合代码助手、知识库检索和本地智能体工作流落地。</p><p>来源：<a href="https://www.marktechpost.com/2026/09/02/qwen-developers-open-sources-zg-zvec-grep-a-local-first-search-layer-unifying-ripgrep-bm25-and-vector-search/" target="_blank" rel="noreferrer">MarkTechPost - Open Source</a></p><p>原文标题：Qwen Developers Open-Sources zg (zvec-grep): A Local-First Search Layer Unifying ripgrep, BM25, and Vector Search</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI推理与服务加速</h2><h3 id="event-33860-copy-2">1、Prefix Sliding用有界上下文重塑长程推理成本</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">Prefix Sliding</span> <span class="md-tag">KV cache</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：2026-09-02，相关文章围绕<strong>Prefix Sliding</strong>讨论长程推理中token冗余的问题：在full attention下，推理链越长，<strong>KV cache</strong>和计算成本越高，而注意力可视化显示中间token往往很快失去作用。作者因此提出只保留前缀和滑动窗口的机制，并说明可通过Continue PE、分块回传和自定义kernel把该方法用于推理与训练，目标是在不重训现有模型的前提下实现更长轨迹和更高吞吐。</p><p>📌 <strong>总结</strong>：这一思路对长上下文产品、Agent编排和推理系统的意义在于，它给出了一个可以直接迁移到现有模型上的成本上限方案，而不是要求从头换架构。若后续工程化成熟，团队在规划上下文预算、缓存策略和长链路任务时，便能按“有界成本”而不是“线性膨胀”来设计系统。</p><p>来源：<a href="https://mp.weixin.qq.com/s?__biz=Mzk0MTYzMzMxMA==&amp;amp;mid=2247510745&amp;amp;idx=1&amp;amp;sn=413a4ff1480b263dfe33a6cc30f9d80f" target="_blank" rel="noreferrer">微信科技 RSS（bestblogs 待验证）</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-33350-copy-2">2、NVIDIA用投机解码压低LLM推理开销</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">speculative decoding</span> <span class="md-tag">TensorRT-LLM</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：2026年9月2日，<strong>NVIDIA</strong>围绕 <strong>speculative decoding</strong> 给出一套面向 <strong>LLM</strong> inference 的共设计方法，核心是在解码阶段用小 draft model 先生成多 token，再由大 target model 一次并行校验，从而减少逐 token 迭代次数。文章进一步比较 external draft model、<strong>MTP</strong>、<strong>EAGLE-3</strong>、<strong>DFlash</strong>、<strong>DSpark</strong> 与 suffix/n-gram 等机制，并用 <strong>SPEED-Bench</strong> 和 <strong>TensorRT-LLM</strong> 说明应如何结合 workload、draft length、acceptance length 与 draft overhead 选择最优配置。</p><p>📌 <strong>总结</strong>：这类方法的价值不在于单点提速，而在于把推理加速从“模型越大越慢”的粗粒度判断，推进到围绕 token 接受率、KV cache 压力、kernel tile 对齐和训练/部署成本的系统优化。对推理平台与芯片方案设计而言，它提供了可复用的调参框架，也强化了模型结构、serving 架构和硬件执行效率之间的联动判断。</p><p>来源：<a href="https://developer.nvidia.com/blog/co-designing-ai-models-using-speculative-decoding-for-faster-llm-inference/" target="_blank" rel="noreferrer">NVIDIA</a></p><p>原文标题：Co-Designing AI Models Using Speculative Decoding for Faster LLM Inference</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI模型</h2><h3 id="event-34034-copy-2">1、Anthropic 推出 Fable 5.1 并压低复杂任务成本</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">Anthropic</span> <span class="md-tag">Fable 5.1</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：9 月 1 日，<strong>Anthropic</strong> 发布 Claude <strong>Fable 5.1</strong> 与 <strong>Claude Mythos 5.1</strong>，前者面向所有用户开放，后者仅供审核机构使用，两个版本能力相同但安全限制不同。官方披露，<strong>Fable 5.1</strong> 在 <strong>Terminal-Bench-Science 0.1</strong>、编码、蛋白质设计、金星地形重建和开源模型 <strong>GPU</strong> 内核优化等任务上都有进展，并能把七个开源模型的 <strong>GPU</strong> 推理速度最高提升 <strong>2.5 倍</strong>。</p><p>📌 <strong>总结</strong>：这次升级的核心价值不只是能力提升，而是把模型、工具调用、安全边界和成本结构一起重做：一方面，复杂科研和工程任务有了更强的自动化能力；另一方面，缓存读取价格和复杂任务总成本明显下降，意味着企业在智能体、科研辅助和网络安全等高价值场景中，可以用更低单位成本换取更高执行深度。但同时，<strong>Mythos</strong> 的严格准入也说明高能力模型正在走向分级供给。</p><p>来源：<a href="https://www.mittrchina.com/news/detail/16883" target="_blank" rel="noreferrer">MITTR China - News Detail</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-34033-copy-2">2、World Labs推出Atlas，统一视频生成与3D重建</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">Atlas</span> <span class="md-tag">3D重建</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：2026-09-02，<strong>World</strong> Labs发布<strong>Atlas</strong>，尝试把视频生成、<strong>3D重建</strong>和时空模拟放进同一个多模态世界模型中。该模型从零开始预训练，将文本、图像、视频和3D数据统一进共享的Spatial <strong>Context</strong>，并把相机位姿作为原生输入，使模型不仅能按轨迹生成最长<strong>1分钟</strong>、1440p视频，还能从照片和视频重建点云和3D <strong>Gaussian</strong> Splatting场景。</p><p>📌 <strong>总结</strong>：<strong>Atlas</strong>的意义在于把过去分散的视频生成、几何重建和机器人仿真统一到空间表示上，说明世界模型竞争正在从“生成得像”转向“空间一致、可重建、可迁移”。如果后续验证能覆盖物理一致性、长时稳定性和真实机器人成功率，它会对影视、游戏、建筑和Real-to-Sim工作流形成更直接的架构影响；当前阶段则更像是路线信号而非成熟产品。</p><p>来源：<a href="https://www.mittrchina.com/news/detail/16884" target="_blank" rel="noreferrer">MITTR China - News Detail</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-33319-copy-2">3、Google推出Gemini 3.8强化推理与安全编程能力</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">Gemini 3.8 Flash</span> <span class="md-tag">Flash Cyber</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：2026年9月2日，<strong>Google</strong> DeepMind发布<strong>Gemini 3.8 Flash</strong>与3.8 <strong>Flash Cyber</strong>，前者面向软件工程、agentic任务和多步推理，后者面向漏洞发现与自动修补。两款模型共享同一基础能力，并通过长链路agent循环进一步强化递归评估和改进；其中 <strong>Flash</strong> 版本保持与3.7 <strong>Flash</strong>相同的起步价格，<strong>Cyber</strong> 版本则通过 <strong>Fairwind Program</strong> 向可信防御方开放。</p><p>📌 <strong>总结</strong>：这次发布把“通用推理 + 安全防御”拆成两条可独立采购和部署的产品线，一方面压低编程与智能体工作流的使用门槛，另一方面把漏洞发现、补丁生成和代码防护纳入可规模化的安全能力。对技术路线而言，它强化了以长链路推理和工具调用支撑复杂任务的方向；对商业判断而言，则意味着模型竞争已从单纯能力对比，转向价格、场景隔离和可信访问机制的组合竞争。</p><p>来源：<a href="https://deepmind.google/blog/introducing-gemini-3-8-flash-and-38-flash-cyber/" target="_blank" rel="noreferrer">Google DeepMind</a></p><p>原文标题：Introducing Gemini 3.8 Flash and 3.8 Flash Cyber</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-34262-copy-2">4、阿里更新 Qwen3.8-Max 提升前端编程与性价比</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">Qwen3.8-Max</span> <span class="md-tag">前端编程</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：2026-09-02，阿里更新旗舰模型 <strong>Qwen3.8-Max</strong>，并针对 <strong>Coding</strong> 和 <strong>Cowork</strong> 做专项后训练，官方称整体性能明显提升。文中提到，该模型在聚焦<strong>前端编程</strong>能力的 <strong>CodeArena</strong> 榜单中提升 22 分至 1691 分，位居总榜第一；同时在该榜单的模型性价比前沿中，新版本每百万 tokens 的综合平均价格为 5 美元。阿里还称该模型支持 <strong>100 万</strong>上下文 tokens，并已接入千问 AI 平台、千问办公、<strong>Qoder</strong> 和千问 <strong>App</strong>。</p><p>📌 <strong>总结</strong>：这次更新的核心不是单纯提升分数，而是把编程能力、长上下文和单位成本放到同一条产品线里重新定义竞争力。对技术路线而言，它说明后训练与专项优化仍是企业级模型竞争的重要手段；对商业判断而言，<strong>API</strong> 价格、上下文长度和可用场景的同步改善，会直接影响企业是否把 <strong>Qwen</strong> 作为默认编程与长任务模型。</p><p>来源：<a href="https://finance.sina.com.cn/tech/shenji/2026-09-02/doc-iniqkzma1357655.shtml" target="_blank" rel="noreferrer">新浪科技</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-33696-copy-2">5、彩云用动态连接优化刷新华而不实的训练纪录</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">彩云科技</span> <span class="md-tag">NanoGPT Speedrun</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：2026-09-02，<strong>NanoGPT Speedrun</strong> 公开竞速项目中，<strong>彩云科技</strong>基础模型算法团队围绕固定 8 张 <strong>H100</strong>、同一数据和同一效果约束，先后用 <strong>MUDD Skip Connections</strong> 与 <strong>Lightweight DC</strong> 连续两次刷新 <strong>GPT-2 Small</strong> 训练纪录。团队第一刀优化层间信息流动，通过动态选择跨层连接减少无效传递；第二刀改造多头注意力协作方式，让不同 head 在局部窗口内动态组合并复用投影，从而把端到端训练时间从 <strong>84.36 秒</strong>压到 <strong>76.3 秒</strong>。</p><p>📌 <strong>总结</strong>：这一结果的价值不只是榜单刷新，而是把动态连接、动态注意力组合这类架构思路放进了公开、固定硬件、固定数据的真实竞速环境里验证。对技术路线而言，它说明层间信息流和层内协作都可以通过低开销机制换取可量化训练加速；对研发工作而言，论文方法若能在竞速赛中落地，就更容易进入后续更大规模训练体系的工程评估。</p><p>来源：<a href="https://mp.weixin.qq.com/s?__biz=MzIwNzc2NTk0NQ==&amp;amp;mid=2247620454&amp;amp;idx=1&amp;amp;sn=ffd3a8d5de95d7066443c1bbb9321e96" target="_blank" rel="noreferrer">夕小瑶科技说 微信公众号 RSS</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-33955-copy-2">6、Meta推出Muse把实时转写和说话人分离压到同一模型</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">Meta</span> <span class="md-tag">Muse Voice Transcribe</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：2026年9月2日，<strong>Meta</strong> 面向会议记录、客服分析和实时助手等语音场景发布 <strong>Muse Voice Transcribe</strong>，将流式转写、端点检测与说话人分离放进同一模型流程，支持 <strong>1 小时</strong>以上长音频、语言切换、关键词偏置和 20+ 说话人分离，并把公开 <strong>API</strong> 价格定为每小时 0.18 美元。<strong>Meta</strong> 还给出了 70 余种语言训练、25 种语言重点验证和流式基准结果，说明其目标不是单纯提升识别率，而是把 speaker attribution 直接纳入实时语音栈。</p><p>📌 <strong>总结</strong>：这类设计的价值在于把原本要拆成转写、聚类和后处理的多段流水线，压缩为一个可直接接入的模型能力，从而降低企业部署时的集成复杂度和总成本。对于会议智能、呼叫质检和语音 <strong>Agent</strong> 来说，speaker-aware 转写比单纯 <strong>ASR</strong> 更接近生产可用标准，也会迫使竞品同时在延迟、分离精度和定价上竞争，而不只是比基础识别能力。</p><p>来源：<a href="https://venturebeat.com/technology/meta-prices-muse-voice-transcribe-at-0-18-an-hour-with-real-time-diarization-for-20-speakers-a-steal-for-enterprises" target="_blank" rel="noreferrer">VentureBeat</a></p><p>原文标题：Meta prices Muse Voice Transcribe at $0.18 an hour, with real-time diarization for 20+ speakers: a steal for enterprises?</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-33685-copy-2">7、Meta把语音转写拆分流程合并成单模型</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">Meta</span> <span class="md-tag">语音转写</span> <span class="md-tag">体验提升</span></p><p>📋 <strong>要点</strong>：2026年9月，<strong>Meta</strong> Superintelligence Labs发布Muse <strong>Voice Transcribe</strong>，面向实时语音处理把流式ASR、speaker diarization和endpointing收敛到一个自回归多模态模型中，避免传统语音栈中转写、分离说话人和停顿检测三套系统之间的多次交接。该模型按<strong>80ms</strong>音频分块处理，利用单一decoder循环在听和写之间切换，并通过强化学习同时优化词错率和时延，形成按词自适应的delay策略。</p><p>📌 <strong>总结</strong>：这一做法把语音交互从多模型拼接改成单模型闭环，直接减少链路复杂度、端到端时延和集成故障点，对会议纪要、语音助手、实时字幕和口述输入等产品都有落地价值。<strong>Meta</strong>以托管API方式开放而非释放权重，也说明其更倾向于通过平台服务把能力封装成可收费接口，进一步强化语音模型的产品化路径与生态控制力。</p><p>来源：<a href="https://www.marktechpost.com/2026/09/01/meta-superintelligence-labs-releases-muse-voice-transcribe-one-real-time-model-for-streaming-asr-diarization-and-endpointing/" target="_blank" rel="noreferrer">MarkTechPost - Voice AI</a></p><p>原文标题：Meta Superintelligence Labs Releases Muse Voice Transcribe: One Real-Time Model for Streaming ASR, Diarization, and Endpointing</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-33409-copy-2">8、Multiverse用压缩模型把438B推向Agent推理</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">Quasar 438B</span> <span class="md-tag">compression</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：2026-09-02，<strong>Multiverse</strong> Computing推出<strong>Quasar 438B</strong>，定位为面向coding和enterprise agents的推理模型，并通过压缩技术降低大模型在记忆和计算上的负担。公司披露该模型上下文窗口为<strong>100万</strong>tokens，<strong>Artificial</strong> Analysis记录其输出速度约<strong>183 token</strong>s/s，<strong>Terminal-Bench</strong> v2.1得分69.3，但同时也未披露压缩比例、原始基座模型和具体硬件需求。</p><p>📌 <strong>总结</strong>：这条信息的重点不在“更大”，而在“更大模型能否被压缩到可用于Agent的成本区间”。如果后续压缩收益、延迟和部署条件能够被验证，它会推动企业把模型选型从绝对能力优先，转向能力、上下文长度、调用成本和工程可部署性的综合权衡；反之，若硬件要求和真实成本不透明，也说明压缩路线仍需要更强的可复现证据。</p><p>来源：<a href="https://thenewstack.io/quasar-438b-agent-compression/" target="_blank" rel="noreferrer">The New Stack Newsletter</a></p><p>原文标题：Multiverse says its 438B model is fast enough for AI agents. The benchmarks tell a more complicated story.</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-34384-copy-2">9、谷歌用Gemini 3.8 Flash追近编程能力差距</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">Gemini 3.8 Flash</span> <span class="md-tag">强化学习</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：据 2026年9月1日报道，谷歌准备推出编程能力显著提升的 <strong>Gemini 3.8 Flash</strong>，内部代号为 <strong>Skimaki</strong>，内部编程工具 <strong>Jetski</strong> 的对比测试中，工程师对它的偏好程度已超过 <strong>Anthropic</strong> 的 <strong>Opus</strong>。报道同时提到，谷歌今年以来把更多研究时间和算力投入<strong>强化学习</strong>环节，并招募前 <strong>Thinking Machines Lab</strong> 联合创始人、<strong>OpenAI</strong> 前后训练负责人 <strong>Barret Zoph</strong> 加强相关工作。</p><p>📌 <strong>总结</strong>：这条信息的价值在于，它把模型竞争焦点再次拉回到后训练和编程能力，而不是单纯堆更大参数。对技术路线而言，<strong>Flash</strong> 系列继续承担更快、更便宜的定位，但能力差距必须靠<strong>强化学习</strong>、后训练和工程组织补齐；对商业判断而言，谷歌正在用分层模型策略维持价格与性能两端的覆盖，争夺开发者和代码场景入口。</p><p>来源：<a href="https://www.c114.com.cn/ai/5339/a1316853.html" target="_blank" rel="noreferrer">C114 通信网</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>模型训练</h2><h3 id="event-33493-copy-2">1、美国政府介入支持OpenAI应对NYT版权诉讼</h3><p><span class="md-tag">模型训练</span> <span class="md-tag">OpenAI</span> <span class="md-tag">版权诉讼</span> <span class="md-tag">合规/监管影响</span></p><p>📋 <strong>要点</strong>：2026年9月，美国特朗普政府在The <strong>New York</strong> Times诉<strong>OpenAI</strong>的<strong>版权诉讼</strong>中提交statement of interest，支持<strong>OpenAI</strong>关于AI<strong>模型训练</strong>可构成fair use的主张。该案围绕OpenAI是否能在未经许可的情况下使用受版权保护文本训练LLM展开，政府意见书认为过度扩大版权责任会妨碍<strong>模型训练</strong>、研究突破和美国经济活力。</p><p>📌 <strong>总结</strong>：这类司法介入的影响不在产品功能本身，而在训练数据和版权边界的制度预期。若法院采纳更宽的fair use解释，模型厂商会获得更强的训练空间和议价筹码；若边界趋严，媒体版权许可、训练数据采购和合规成本都会同步上升。对规划侧而言，这会直接影响训练数据策略和法务投入。</p><p>来源：<a href="https://www.theverge.com/ai-artificial-intelligence/988344/trump-administration-new-york-times-openai-lawsuit" target="_blank" rel="noreferrer">The Verge AI</a></p><p>原文标题：The Trump administration is supporting OpenAI in the NYT copyright lawsuit</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI安全、可信与治理</h2><h3 id="event-33347-copy-2">1、Google开源Mantis提升漏洞发现与修复效率</h3><p><span class="md-tag">AI安全、可信与治理</span> <span class="md-tag">Google Mantis</span> <span class="md-tag">漏洞</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：2026年9月2日，<strong>Google</strong> 发布开源框架 <strong>Mantis</strong>，用于自动化发现、分流、复现和修补软件漏洞。该框架把 critic 和 review agents 与沙箱化复现结合起来，并利用仓库历史自动构建架构与威胁模型文档，再将大量文件压缩为分层安全摘要树，以降低上下文开销并提升分析效率。<strong>Google</strong> 还表示，这套方法已在内部用于更快地找出真实漏洞，并在 <strong>GitHub</strong> 上开放给外部使用。</p><p>📌 <strong>总结</strong>：<strong>Mantis</strong> 的价值不只是开源一个安全工具，而是把漏洞研究、上下文整理、复现验证和补丁建议串成了更可规模化的 agent 流水线。对研发团队来说，它意味着安全扫描不必再依赖大量人工筛查误报；对产品架构来说，代码仓库的历史、威胁模型和修复上下文可以被结构化注入 agent，形成更稳定的安全生产力。</p><p>来源：<a href="https://cloud.google.com/blog/products/identity-security/getting-started-with-the-mantis-harness-to-find-and-fix-bugs/" target="_blank" rel="noreferrer">Google Cloud</a></p><p>原文标题：Getting started with Mantis, our open-source bug finding-and-fixing harness</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-33576-copy-2">2、Meta 以结构化知识和验证回路沉淀组织经验</h3><p><span class="md-tag">AI安全、可信与治理</span> <span class="md-tag">Meta</span> <span class="md-tag">知识架构</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：2026年9月2日，<strong>Meta</strong> 公布其组织级“second brain”方案，面向合规等高重复、高风险场景，把专家知识拆成位置文件、术语表、路由索引和门控文件，再用明确的 recipes 控制推理流程。系统先离线抽取知识并形成可审计文件，再通过专家反馈触发最小化修复、回归测试和人工复核，把一次性纠错沉淀为永久生效的机构记忆。</p><p>📌 <strong>总结</strong>：这套方案把知识管理、推理流程和评测回路解耦，实际价值不在于单次回答更像专家，而在于让组织知识以文本资产的方式持续累积、可追溯、可回滚。对技术路线的影响是，企业级 agent 不必依赖模型重训也能更新领域知识；对产品架构的影响是，知识层、流程层和测试层可以分别演进，降低维护成本并提升一致性。</p><p>来源：<a href="https://engineering.fb.com/2026/09/02/ml-applications/organizational-second-brain-ai-learns-from-experts/" target="_blank" rel="noreferrer">Engineering at Meta</a></p><p>原文标题：An Organizational Second Brain: Building an AI That Learns From Experts</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-33492-copy-2">3、OpenAI Astra 透明度争议推高模型安全担忧</h3><p><span class="md-tag">AI安全、可信与治理</span> <span class="md-tag">Astra</span> <span class="md-tag">chain-of-thought</span> <span class="md-tag">安全风险</span></p><p>📋 <strong>要点</strong>：<strong>The Verge</strong> 引述研究者和 <strong>OpenAI</strong> 内部人士称，<strong>Astra</strong> 在推理过程中可能使用更不透明的 recurrent depth 或 looped transformer 机制，使得模型内部思考更难像传统 <strong>chain-of-thought</strong> 那样被外部监控。报道同时提到，<strong>OpenAI</strong> 已围绕 <strong>Astra</strong> 加强 <strong>chain-of-thought</strong> monitoring，以便快速识别和阻断潜在失配行为，但研究者担心这种更难观测的架构会让安全检测和审计变得更脆弱。</p><p>📌 <strong>总结</strong>：这条消息的重点不是某个单独分数，而是模型透明度本身正在成为安全竞争的一部分。对前沿模型研发而言，架构选择不只影响性能，也影响是否还能被有效监控；对企业和平台而言，是否能够在生产环境里持续审计模型行为，正在变成选型与上线的重要门槛。若这种趋势继续，安全、可解释性和能力提升之间的权衡会更早进入产品决策。</p><p>来源：<a href="https://www.theverge.com/ai-artificial-intelligence/988334/openai-astra-ai-monitoring-safety" target="_blank" rel="noreferrer">The Verge AI</a></p><p>原文标题：Researchers fear safety disaster ahead of OpenAI’s Astra release</p></div></details><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>云与AI基础设施</h2><h3 id="event-33446-copy-2">1、CDM用模块化AI机房重构数据中心建造方式</h3><p><span class="md-tag">云与AI基础设施</span> <span class="md-tag">Compu Dynamics Modular</span> <span class="md-tag">模块化AI基础设施</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：2026年9月2日，<strong>Compu Dynamics Modular</strong> 发布了新的<strong>模块化AI基础设施</strong>组合，覆盖 750 kW <strong>All-In-One Module</strong>、1.5 MW <strong>Base Module</strong>、3 MW AI <strong>Modular Solution</strong> 以及 5-6 MW <strong>Turnkey AI Factory</strong>，并规划向 50+ MW AI campuses 扩展。原文强调其设计围绕具体工作负载展开，750 kW 模块面向 AI edge inference 与空间受限部署，5 MW 方案则面向 hyperscale campus 和 foundation model training，同时标准化 hybrid air 与 direct-to-chip liquid cooling、弹性供电拓扑和动态负载稳定机制。</p><p>📌 <strong>总结</strong>：这类产品的价值在于把AI数据中心建设从项目制施工推进到标准化、可复制、按负载交付的工业化路径。对技术路线而言，混合冷却和工作负载定制成为高密度GPU时代的主流思路；对产品架构而言，基础设施供应商需要同时提供模块、冷却、电力和交付能力；对商业判断而言，交付速度、可扩展性和本地制造能力正在成为与传统机房方案竞争的核心变量。</p><p>来源：<a href="https://datacenterpost.com/why-ai-is-forcing-a-rethink-of-data-center-building-blocks/?utm_source=rss&amp;amp;utm_medium=rss&amp;amp;utm_campaign=why-ai-is-forcing-a-rethink-of-data-center-building-blocks" target="_blank" rel="noreferrer">Data Center POST</a></p><p>原文标题：Why AI Is Forcing a Rethink of Data Center Building Blocks</p></section><section class="report-tab-panel" data-report-panel="report-tabs-0-2"><ul><li>暂无入选条目</li></ul></section><section class="report-tab-panel" data-report-panel="report-tabs-0-3"><ul><li>暂无入选条目</li></ul></section><section class="report-tab-panel" data-report-panel="report-tabs-0-4"><ul><li>暂无入选条目</li></ul></section><section class="report-tab-panel" data-report-panel="report-tabs-0-5"><details class="report-collapse" open><summary>AI核心技术板块</summary><div class="report-collapse-body"><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI推理与服务加速</h2><h3 id="event-33441-copy-2">1、PyTorch 2.14 强化编译器与分布式性能</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">PyTorch</span> <span class="md-tag">Inductor</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：2026年9月，<strong>PyTorch</strong> 发布 2.14，重点把编译器、分布式通信和多硬件后端的性能补齐做成了同一轮能力升级：<strong>Inductor</strong> 侧引入 <strong>NVGEMM</strong>、默认开启通信与计算重叠，并改进动态 shape、组合 kernel 和 per-call 开销；分布式侧新增 nccl2 backend、可原地重配置的故障恢复机制、one-sided <strong>RMA</strong> window 和 backend-agnostic <strong>Flight Recorder</strong>；同时还补齐 <strong>Apple Silicon</strong>、<strong>ROCm</strong>、<strong>Intel XPU</strong> 等平台的 native kernel 与图捕获能力。</p><p>📌 <strong>总结</strong>：这次发布的价值不只是单项算子加速，而是把模型执行链路里的编译、调度、通信、容错和平台适配连成一体，降低了训练集群在多机故障、异构硬件和动态 shape 场景下的工程成本。对技术路线而言，<strong>PyTorch</strong> 继续从研究框架转向统一的生产训练与推理平台；对产品架构而言，分布式和后端能力更容易被默认启用，减少上层应用自行拼装优化组件的需要；对商业判断而言，框架侧的效率收益会直接影响大模型训练和推理的 <strong>TCO</strong> 竞争力。</p><p>来源：<a href="https://pytorch.org/blog/pytorch-2-14-release-blog/" target="_blank" rel="noreferrer">PyTorch</a></p><p>原文标题：PyTorch 2.14 Release Blog</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI模型</h2><h3 id="event-34393-copy-2">1、darkps 发布多语种流式TTS并加入声线克隆</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">ice-012-audio</span> <span class="md-tag">streaming TTS</span> <span class="md-tag">体验提升</span></p><p>📋 <strong>要点</strong>：2026年9月2日，darkps 在 <strong>Hugging Face</strong> 更新 <strong>ice-012-audio</strong>，面向多语种文本转语音场景提供流式输出和基于参考音频的声线克隆能力，同时通过 active acoustic adapter 在骨干网络前后对 codec embedding 与隐藏状态做条件化处理，以提升语音生成的可控性与连续性。公开用法还展示了按语言、性别、风格和速度进行生成，以及从参考音频自动选择声线，说明该模型不只是单次合成，而是面向可交互语音工作流设计。</p><p>📌 <strong>总结</strong>：这类发布的价值在于把 <strong>TTS</strong> 从“生成一段音频”推进到“可在交互链路中持续输出”，对语音助手、播报系统、内容生产和多语种服务都有直接意义。流式输出降低了首包等待，声线克隆扩大了个性化语音的可复用性，而 active acoustic adapter 这类结构也为后续在质量、延迟和可控性之间做工程权衡提供了明确路线。</p><p>来源：<a href="https://huggingface.co/darkps/ice-012-audio" target="_blank" rel="noreferrer">Hugging Face Models</a></p><p>原文标题：darkps/ice-012-audio Text-to-Speech • 0.7B • Updated about 13 hours ago • 349 • 66</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI安全、可信与治理</h2><h3 id="event-34396-copy-2">1、Perplexity发布PII遮罩模型强化隐私识别</h3><p><span class="md-tag">AI安全、可信与治理</span> <span class="md-tag">pplx-pii-masking</span> <span class="md-tag">PII masking</span> <span class="md-tag">安全风险</span></p><p>📋 <strong>要点</strong>：2026-09-02，perplexity-ai在Hugging Face发布<strong>pplx-pii-masking</strong>，目标是对输入文本中的个人姓名、邮箱和电话等敏感信息做识别与遮罩。条目说明该模型采用Token Classification架构，结合BIOES解码和单文档敏感度输出，max_seq_len为4096，推理流程是先编码文本，再输出标签序列和mask结果，适合嵌入到检索、助手和内容处理管线中。</p><p>📌 <strong>总结</strong>：这类模型把隐私保护从事后规则清洗推进到前置识别与自动遮罩，能直接影响企业在日志、搜索、客服和知识库场景里的数据流设计。对产品架构而言，它提供了一个可插拔的合规前置层，帮助团队在不改变上层业务逻辑的前提下减少敏感信息外泄和人工审核压力。</p><p>来源：<a href="https://huggingface.co/perplexity-ai/pplx-pii-masking" target="_blank" rel="noreferrer">Hugging Face Models</a></p><p>原文标题：perplexity-ai/pplx-pii-masking Token Classification • 0.6B • Updated about 15 hours ago • 41</p></div></details><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>云与AI基础设施</h2><h3 id="event-33416-copy-2">1、Metal3接入KubeVirtBMC实现虚拟机裸机化编排</h3><p><span class="md-tag">云与AI基础设施</span> <span class="md-tag">KubeVirtBMC</span> <span class="md-tag">Metal3</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：2026-09-02，<strong>CNCF Blog</strong>展示了<strong>KubeVirtBMC</strong>与<strong>Metal3</strong>的端到端联动方案：先为KubeVirt虚拟机提供虚拟BMC端点，再由<strong>Metal3</strong>和Ironic通过Redfish virtual media把它注册为BareMetalHost，完成探测、装载镜像和状态流转。方案在单一Kubernetes集群内运行，借助固定MAC、裸机CR和虚拟介质接口，让虚拟机表现得像可被裸机编排系统管理的物理服务器。</p><p>📌 <strong>总结</strong>：这类集成把裸机管理、Ironic流程和KubeVirt虚机编排连成了可复用的测试与演示路径，使团队无需长期维护实体机群也能验证裸机 provisioning 逻辑。对基础设施软件而言，它把原本依赖硬件的集成场景转成了容器化、可复制、易回归的环境，直接提升CI/CD、开发内循环和方案演示效率。</p><p>来源：<a href="https://www.cncf.io/blog/2026/09/02/metal3-meets-kubevirtbmc-provisioning-kubevirt-vms-like-bare-metal/" target="_blank" rel="noreferrer">CNCF</a></p><p>原文标题：Metal3 meets KubeVirtBMC: Provisioning KubeVirt VMs like bare metal</p></section><section class="report-tab-panel" data-report-panel="report-tabs-0-6"><ul><li>暂无入选条目</li></ul></section></div></div><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>快报候选</h2><ul><li><strong>Proactive 基于 Gemini 协同编码智能体工作流，推动 AI 开发工具多环境协作</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>ClawBench 让 AI agent 在真实网站任务中暴露短板</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>Qwen开源zg把本地检索统一到单一Agent接口</strong>｜爆发增长｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>Prefix Sliding用有界上下文重塑长程推理成本</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>NVIDIA用投机解码压低LLM推理开销</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>PyTorch 2.14 强化编译器与分布式性能</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>Anthropic 推出 Fable 5.1 并压低复杂任务成本</strong>｜爆发增长｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>World Labs推出Atlas，统一视频生成与3D重建</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li></ul><h2>统计</h2><table class="md-table"><tr><th>板块</th><th>条目数</th></tr><tr><td>AI模型</td><td>10</td></tr><tr><td>AI安全、可信与治理</td><td>4</td></tr><tr><td>AI推理与服务加速</td><td>3</td></tr><tr><td>智能体平台、协议与执行系统</td><td>2</td></tr><tr><td>云与AI基础设施</td><td>2</td></tr><tr><td>AI应用与产品化场景</td><td>1</td></tr><tr><td>模型训练</td><td>1</td></tr><tr><td>标准、协议与产业联盟</td><td>1</td></tr><tr><td><strong>合计</strong></td><td><strong>24</strong></td></tr></table>
+    </article>
+  </main>
+  <script>
+document.querySelectorAll("[data-report-tabs]").forEach((container) => {
+  const buttons = Array.from(container.querySelectorAll("[data-report-tab]"));
+  const panels = Array.from(container.querySelectorAll("[data-report-panel]"));
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const target = button.dataset.reportTab;
+      buttons.forEach((item) => item.classList.toggle("active", item === button));
+      panels.forEach((panel) => panel.classList.toggle("active", panel.dataset.reportPanel === target));
+    });
+  });
+});
+function activateReportPanelForElement(element) {
+  const panel = element && element.closest("[data-report-panel]");
+  if (!panel) return;
+  const tabs = panel.closest("[data-report-tabs]");
+  if (!tabs) return;
+  const panelId = panel.dataset.reportPanel;
+  tabs.querySelectorAll("[data-report-tab]").forEach((button) => {
+    button.classList.toggle("active", button.dataset.reportTab === panelId);
+  });
+  tabs.querySelectorAll("[data-report-panel]").forEach((item) => {
+    item.classList.toggle("active", item === panel);
+  });
+}
+document.querySelectorAll("[data-report-return-target]").forEach((button) => {
+  button.addEventListener("click", (event) => {
+    const targetId = button.dataset.reportReturnTarget || "";
+    const target = document.getElementById(targetId);
+    if (!target) return;
+    event.preventDefault();
+    activateReportPanelForElement(target);
+    window.requestAnimationFrame(() => {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (target.id && window.history && window.history.replaceState) {
+        window.history.replaceState(null, "", `#${target.id}`);
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>
